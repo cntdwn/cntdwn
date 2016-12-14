@@ -2,13 +2,20 @@
 
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { TimerComponent } from './timer/timer.component';
+import { TimerDisplayComponent } from './timer-display/timer-display.component';
+import { TimerEditComponent } from './timer-edit/timer-edit.component';
 
 describe('AppComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        TimerComponent,
+        TimerDisplayComponent,
+        TimerEditComponent
       ],
+      providers: []
     });
   });
 
@@ -24,10 +31,13 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('app works!');
   }));
 
-  it('should render title in a h1 tag', async(() => {
+  it('should render timer', async(() => {
     let fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    let compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('app works!');
+    let children = fixture.debugElement.children;
+    let timerCounted = children.filter((item) => {
+      return item.componentInstance instanceof TimerComponent;
+    }).length;
+
+    expect(timerCounted).toEqual(1);
   }));
 });

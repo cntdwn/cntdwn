@@ -4,17 +4,24 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { TimerComponent } from './timer/timer.component';
+import { TimerEditComponent } from './timer-edit/timer-edit.component';
+import { TimerDisplayComponent } from './timer-display/timer-display.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TimerComponent,
+    TimerEditComponent,
+    TimerDisplayComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [ ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

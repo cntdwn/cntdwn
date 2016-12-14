@@ -1,0 +1,9 @@
+<div>
+  <div *ngIf="isInEditMode">
+    <app-timer-edit></app-timer-edit>
+  </div>
+  <div *ngIf="!isInEditMode">
+    <app-timer-display [end]="end"></app-timer-display>
+  </div>
+  <button (click)="toggle()">{{isInEditMode ? "Display" : "Edit"}}</button>
+</div>
