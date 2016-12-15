@@ -2,12 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { CommonModule, LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { TimerComponent } from './timer/timer.component';
 import { TimerEditComponent } from './timer-edit/timer-edit.component';
 import { TimerDisplayComponent } from './timer-display/timer-display.component';
-
+import { ParameterService } from './parameter.service';
 
 @NgModule({
   declarations: [
@@ -19,9 +20,16 @@ import { TimerDisplayComponent } from './timer-display/timer-display.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    CommonModule
   ],
-  providers: [ ],
-  bootstrap: [AppComponent]
+  providers: [
+    {provide: LocationStrategy, useClass: PathLocationStrategy},
+    ParameterService
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
-export class AppModule { }
+export class AppModule {
+}

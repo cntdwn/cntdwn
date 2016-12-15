@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Input, Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-timer',
@@ -7,16 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TimerComponent implements OnInit {
   public isInEditMode = false;
-  public end: Date;
+  @Input() public end: Date;
 
   constructor() {
   }
 
   ngOnInit() {
-    let now = new Date();
-    let yearFromNow = now;
-    yearFromNow.setFullYear(now.getFullYear() + 1);
-    this.end = yearFromNow;
   }
 
   toggle() {
