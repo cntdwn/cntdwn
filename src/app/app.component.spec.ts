@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { TimerComponent } from './timer/timer.component';
 import { TimerDisplayComponent } from './timer-display/timer-display.component';
 import { TimerEditComponent } from './timer-edit/timer-edit.component';
+import { Location as Loc } from '@angular/common';
+import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 describe('AppComponent', () => {
   beforeEach(() => {
@@ -15,7 +17,10 @@ describe('AppComponent', () => {
         TimerDisplayComponent,
         TimerEditComponent
       ],
-      providers: []
+      providers: [
+        Loc,
+        {provide: LocationStrategy, useClass: PathLocationStrategy}
+      ]
     });
   });
 

@@ -1,7 +1,6 @@
 import { Component, OnInit, OnChanges, SimpleChanges, Input, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { TimerService } from '../timer.service';
 import { Remaining } from '../remaining';
-import { Observable } from 'rxjs/Rx';
 
 
 @Component({
