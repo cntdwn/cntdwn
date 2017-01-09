@@ -39,7 +39,7 @@ describe('Remaining servce', () => {
         });
 
         it('return 0 values for same dates', () => {
-            
+
             let start = new Date(2001, 0, 1, 8, 0, 0);
             let end = new Date(2001, 0, 1, 8, 0, 0);
 

@@ -22,6 +22,10 @@ export class ParameterService {
       return String('00' + input).slice(-2);
     }
 
+    if (date == null) {
+      return null;
+    }
+
     return `${date.getFullYear()}${padZero((date.getMonth() + 1).toString())}${padZero((date.getDate()).toString())}`;
   }
 }
