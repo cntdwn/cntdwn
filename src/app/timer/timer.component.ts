@@ -1,18 +1,26 @@
-import { Input, Component, OnInit } from '@angular/core';
+import { Input, Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-timer',
   templateUrl: './timer.component.html',
   styleUrls: ['./timer.component.scss']
 })
-export class TimerComponent implements OnInit {
+export class TimerComponent {
   public isInEditMode = false;
-  @Input() public end: Date;
+  private date: Date;
+  @Output() endChange = new EventEmitter();
 
   constructor() {
   }
 
-  ngOnInit() {
+  @Input()
+  get end(): Date {
+    return this.date;
+  }
+
+  set end(val: Date) {
+    this.date = val;
+    this.endChange.emit(val);
   }
 
   toggle() {

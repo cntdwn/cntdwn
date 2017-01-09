@@ -1,21 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { Location as Loc } from '@angular/common';
+import { Location } from '@angular/common';
+import { Title } from '@angular/platform-browser';
 import { ParameterService } from './parameter.service';
 
 @Component({
   selector: 'app-counter',
   templateUrl: './app.component.html',
   entryComponents: [],
-  providers: [ Loc ],
+  providers: [ Location ],
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
   private end: Date;
 
-  constructor(private location: Loc, private parameterService: ParameterService) {
+  constructor(private location: Location, private titleService: Title, private parameterService: ParameterService) {
   }
 
   ngOnInit() {
+    this.titleService.setTitle('counter');
     let url = this.location.path(false);
     let parsed = this.parameterService.parseDate(url);
 

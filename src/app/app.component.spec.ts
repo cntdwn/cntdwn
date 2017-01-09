@@ -5,8 +5,11 @@ import { AppComponent } from './app.component';
 import { TimerComponent } from './timer/timer.component';
 import { TimerDisplayComponent } from './timer-display/timer-display.component';
 import { TimerEditComponent } from './timer-edit/timer-edit.component';
-import { Location as Loc } from '@angular/common';
+import { Location } from '@angular/common';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { APP_BASE_HREF } from '@angular/common';
+import { ParameterService } from './parameter.service';
 
 describe('AppComponent', () => {
   beforeEach(() => {
@@ -17,9 +20,12 @@ describe('AppComponent', () => {
         TimerDisplayComponent,
         TimerEditComponent
       ],
+      imports: [ FormsModule ],
       providers: [
-        Loc,
-        {provide: LocationStrategy, useClass: PathLocationStrategy}
+        Location,
+        ParameterService,
+        {provide: LocationStrategy, useClass: PathLocationStrategy},
+        {provide: APP_BASE_HREF, useValue: '/'}
       ]
     });
   });
@@ -28,12 +34,6 @@ describe('AppComponent', () => {
     let fixture = TestBed.createComponent(AppComponent);
     let app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
-  }));
-
-  it(`should have as title 'app works!'`, async(() => {
-    let fixture = TestBed.createComponent(AppComponent);
-    let app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('app works!');
   }));
 
   it('should render timer', async(() => {

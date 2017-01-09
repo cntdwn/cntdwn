@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, SimpleChanges, Input, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnChanges, SimpleChanges, Input, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { TimerService } from '../timer.service';
 import { Remaining } from '../remaining';
 
@@ -10,16 +10,12 @@ import { Remaining } from '../remaining';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [ TimerService ]
 })
-export class TimerDisplayComponent implements OnInit, OnChanges {
-  @Input()
-  public end: Date;
+export class TimerDisplayComponent implements OnChanges {
+  @Input() public end: Date;
   public remaining: Remaining;
 
   constructor(private timerService: TimerService, private cd: ChangeDetectorRef) {
 
-  }
-
-  ngOnInit() {
   }
 
   ngOnChanges(changes: SimpleChanges) {

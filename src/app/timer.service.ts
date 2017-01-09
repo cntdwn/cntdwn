@@ -9,7 +9,7 @@ export class TimerService implements ITick {
   constructor() { }
 
   tick(end: Date): Observable<Remaining> {
-    return Observable.timer(new Date(), 1000).map<Remaining>(() => {
+    return Observable.timer(new Date(), 1000).map(() => {
       return Remaining.create(new Date(), end);
     });
   }
