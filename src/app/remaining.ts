@@ -2,27 +2,19 @@ import * as moment from 'moment';
 //import * as momentRange from '../node_modules/moment-precise-range-plugin/moment-precise-range.js';
 
 export class Remaining {
-    years: number;
-    months: number;
-    days: number;
-    hours: number;
-    minutes: number;
-    seconds: number;
+    years: number = 0;
+    months: number = 0;
+    days: number = 0;
+    hours: number = 0;
+    minutes: number = 0;
+    seconds: number = 0;
 
     private static momentDiff(d1: Date, d2: Date): Remaining {
-        let m1 = moment(d1), m2 = moment(d2), firstDateWasLater;
+        let m1 = moment(d1), m2 = moment(d2);
         m1.add(m2.utcOffset() - m1.utcOffset(), 'minutes'); // shift timezone of m1 to m2
-        
-        if (m1.isSame(m2)) {
-            return null; // todo same
-        }
-        if (m1.isAfter(m2)) {
-            let tmp = m1;
-            m1 = m2;
-            m2 = tmp;
-            firstDateWasLater = true;
-        } else {
-            firstDateWasLater = false;
+
+        if (m1.isSame(m2) || m1.isAfter(m2)) {
+            return new Remaining();
         }
 
         let yDiff = m2.year() - m1.year();
@@ -75,10 +67,10 @@ export class Remaining {
 
     toString(): string {
         return `${this.years} years :
-${this.months} months :
-${this.days} days :
-${this.hours} hours :
-${this.minutes} minutes :
-${this.seconds} seconds`;
+                ${this.months} months :
+                ${this.days} days :
+                ${this.hours} hours :
+                ${this.minutes} minutes :
+                ${this.seconds} seconds`;
     }
 }
