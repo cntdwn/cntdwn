@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Title } from '@angular/platform-browser';
 import { ParameterService } from './parameter.service';
+import { Goal } from './goal';
 
 @Component({
   selector: 'app-counter',
@@ -11,7 +12,7 @@ import { ParameterService } from './parameter.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  private end: Date;
+  private goal: Goal;
 
   constructor(private location: Location, private titleService: Title, private parameterService: ParameterService) {
   }
@@ -19,17 +20,17 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.titleService.setTitle('counter');
     let url = this.location.path(false);
-    let parsed = this.parameterService.parseDate(url);
+    let parsed = this.parameterService.parse(url);
 
     if (parsed != null) {
-      this.end = parsed;
+      this.goal = parsed;
     } else {
       let now = new Date();
       let yearFromNow = now;
       yearFromNow.setFullYear(now.getFullYear() + 1);
-      this.end = yearFromNow;
-      let encodedDate = this.parameterService.encodeDate(this.end);
-      this.location.replaceState(`${this.location.path(false)}${encodedDate}`);
+      this.goal = new Goal(yearFromNow);
+      let encoded = this.parameterService.encode(this.goal);
+      this.location.replaceState(`${this.location.path(false)}${encoded}`);
     }
   }
 }

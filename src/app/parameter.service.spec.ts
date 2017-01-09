@@ -2,39 +2,56 @@
 
 import { TestBed, async, inject } from '@angular/core/testing';
 import { ParameterService } from './parameter.service';
+import { Goal } from './goal';
 
-describe('DateParameterService', () => {
+describe('ParameterService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [ParameterService]
     });
   });
-  describe('parse date should', () => {
+  describe('parse should', () => {
     it('parse date from path', inject([ParameterService], (service: ParameterService) => {
-      let url = '/20170630';
-      let parsedDate = service.parseDate(url);
-      expect(parsedDate).toEqual(new Date(2017, 5, 30));
+      let url = '/20170630203040';
+      let parsedDate = service.parse(url);
+      expect(parsedDate.end).toEqual(new Date(2017, 5, 30, 20, 30, 40));
     }));
 
-    it('return null when parsing ivalid date', inject([ParameterService], (service: ParameterService) => {
+    it('return null when parsing invalid date', inject([ParameterService], (service: ParameterService) => {
       let url = '/2017343';
-      let parsedDate = service.parseDate(url);
-      expect(parsedDate).toBeNull();
+      let parsed = service.parse(url);
+      expect(parsed).toBeNull();
 
       url = '/x/20160101';
-      parsedDate = service.parseDate(url);
-      expect(parsedDate).toBeNull();
+      parsed = service.parse(url);
+      expect(parsed).toBeNull();
+    }));
+
+    it('parse text', inject([ParameterService], (service: ParameterService) => {
+      let url = '/20160101203040/something';
+      let parsed = service.parse(url);
+
+      expect(parsed.message).toEqual('something');
     }));
   });
 
-  describe('encodeDate should', () => {
+  describe('encode should', () => {
     it('encode date', inject([ParameterService], (service: ParameterService) => {
-      let date = new Date(2016, 0, 1);
-      expect(service.encodeDate(date)).toEqual('20160101');
+      let date = new Date(Date.UTC(2016, 0, 1));
+      let goal = new Goal(date);
+      expect(service.encode(goal)).toEqual('20160101000000');
+    }));
+
+
+    it('encode date and message', inject([ParameterService], (service: ParameterService) => {
+      let date = new Date(Date.UTC(2016, 0, 1));
+      let goal = new Goal(date, 'msg');
+      expect(service.encode(goal)).toEqual('20160101000000/msg');
     }));
 
     it('return null when envoding invalid date', inject([ParameterService], (service: ParameterService) => {
-      expect(service.encodeDate(null)).toBeNull();
+      expect(service.encode(null)).toBeNull();
     }));
   });
+
 });
