@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Goal } from './goal';
+import { PadLeftService } from './pad-left.service';
 
 @Injectable()
 export class ParameterService {
 
-  constructor() { }
+  constructor(private padLeftService: PadLeftService) { }
 
   parse(url: string): Goal {
     let regex = new RegExp('^\\/(\\d{14})(?:\\/([^\\/]+))?');
@@ -20,27 +21,29 @@ export class ParameterService {
                                                 parseInt(matches[1].slice(12, 14), 10))
                                      : null;
 
-      let message = matches.length >= 2 ? matches[2] : null;
+      let message = matches.length >= 2 ? decodeURI(matches[2]) : null;
       return new Goal(date, message);
     }
     return null;
   }
 
   encode(goal: Goal): string {
-    function padZero(input: string) {
-      return String('00' + input).slice(-2);
+    let self = this;
+    function pl(input: string) {
+      return self.padLeftService.padLeft(2, '0', input);
     }
 
     if (goal == null) {
       return null;
     }
 
-    return `${goal.end.getUTCFullYear()}` +
-           `${padZero((goal.end.getUTCMonth() + 1).toString())}` +
-           `${padZero((goal.end.getUTCDate()).toString())}` +
-           `${padZero((goal.end.getUTCHours()).toString())}` +
-           `${padZero((goal.end.getUTCMinutes()).toString())}` +
-           `${padZero((goal.end.getUTCSeconds()).toString())}` +
-           `${goal.message ? '/' + goal.message : ''}`;
+    let params = `${goal.end.getUTCFullYear()}` +
+                 `${pl((goal.end.getUTCMonth() + 1).toString())}` +
+                 `${pl((goal.end.getUTCDate()).toString())}` +
+                 `${pl((goal.end.getUTCHours()).toString())}` +
+                 `${pl((goal.end.getUTCMinutes()).toString())}` +
+                 `${pl((goal.end.getUTCSeconds()).toString())}` +
+                 `${goal.message ? '/' + goal.message : ''}`;
+    return encodeURI(params);
   }
 }
