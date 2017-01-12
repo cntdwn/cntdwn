@@ -2,19 +2,25 @@
 
 import { TestBed, async, inject } from '@angular/core/testing';
 import { ParameterService } from './parameter.service';
+import { PadLeftService } from './pad-left.service';
 import { Goal } from './goal';
 
 describe('ParameterService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ParameterService]
+      providers: [ParameterService, PadLeftService]
     });
   });
   describe('parse should', () => {
     it('parse date from path', inject([ParameterService], (service: ParameterService) => {
       let url = '/20170630203040';
       let parsedDate = service.parse(url);
-      expect(parsedDate.end).toEqual(new Date(2017, 5, 30, 20, 30, 40));
+
+      let d =  new Date(1970, 0, 1);
+      d.setUTCFullYear(2017, 5, 30);
+      d.setUTCHours(20, 30, 40);
+
+      expect(parsedDate.end).toEqual(d);
     }));
 
     it('return null when parsing invalid date', inject([ParameterService], (service: ParameterService) => {

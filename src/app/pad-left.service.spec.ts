@@ -12,6 +12,7 @@ describe('PadLeftService should', () => {
 
   it('pad left', inject([PadLeftService], (service: PadLeftService) => {
     expect(service.padLeft(2, '0', 1)).toEqual('01');
+    expect(service.padLeft(4, '0', 12)).toEqual('0012');
     expect(service.padLeft(2, '0', '1')).toEqual('01');
     expect(service.padLeft(5, 'x', '23')).toEqual('xxx23');
   }));

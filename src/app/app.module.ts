@@ -10,6 +10,7 @@ import { TimerEditComponent } from './timer-edit/timer-edit.component';
 import { TimerDisplayComponent } from './timer-display/timer-display.component';
 import { ParameterService } from './parameter.service';
 import { PadLeftService } from './pad-left.service';
+import { DateParseService } from './date-parse.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { PadLeftService } from './pad-left.service';
   providers: [
     {provide: LocationStrategy, useClass: PathLocationStrategy},
     ParameterService,
-    PadLeftService
+    PadLeftService,
+    DateParseService
   ],
   bootstrap: [
     AppComponent

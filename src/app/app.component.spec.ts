@@ -10,6 +10,7 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 import { ParameterService } from './parameter.service';
+import { PadLeftService } from './pad-left.service';
 
 describe('AppComponent', () => {
   beforeEach(() => {
@@ -24,6 +25,7 @@ describe('AppComponent', () => {
       providers: [
         Location,
         ParameterService,
+        PadLeftService,
         {provide: LocationStrategy, useClass: PathLocationStrategy},
         {provide: APP_BASE_HREF, useValue: '/'}
       ]

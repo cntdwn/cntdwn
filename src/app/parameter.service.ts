@@ -12,17 +12,16 @@ export class ParameterService {
     let matches = url.match(regex);
 
     if (matches != null && matches.length >= 2) {
-
-      let date = matches.length >= 1 ? new Date(parseInt(matches[1].slice(0, 4), 10),
-                                                parseInt(matches[1].slice(4, 6), 10) - 1,
-                                                parseInt(matches[1].slice(6, 8), 10),
-                                                parseInt(matches[1].slice(8, 10), 10),
-                                                parseInt(matches[1].slice(10, 12), 10),
-                                                parseInt(matches[1].slice(12, 14), 10))
-                                     : null;
+      let d = new Date(1970, 0, 1);
+      d.setUTCFullYear(parseInt(matches[1].slice(0, 4), 10),
+                       parseInt(matches[1].slice(4, 6), 10) - 1,
+                       parseInt(matches[1].slice(6, 8), 10));
+      d.setUTCHours(parseInt(matches[1].slice(8, 10), 10),
+                    parseInt(matches[1].slice(10, 12), 10),
+                    parseInt(matches[1].slice(12, 14), 10));
 
       let message = matches.length >= 2 ? decodeURI(matches[2]) : null;
-      return new Goal(date, message);
+      return new Goal(d, message);
     }
     return null;
   }
