@@ -1,5 +1,4 @@
 import * as moment from 'moment';
-//import * as momentRange from '../node_modules/moment-precise-range-plugin/moment-precise-range.js';
 
 export class Remaining {
     years: number = 0;
