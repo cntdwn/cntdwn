@@ -33,4 +33,14 @@ export class AppComponent implements OnInit {
       this.location.replaceState(`${this.location.path(false)}${encoded}`);
     }
   }
+
+  onEndChange(date: Date) {
+    if(date != null) {
+      this.goal.end = date;
+      let encoded = this.parameterService.encode(this.goal);
+      this.location.replaceState(`${this.location.path(false)}${encoded}`);
+    }
+    
+  }
+
 }

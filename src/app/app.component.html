@@ -1,2 +1,1 @@
-<app-timer [(end)]="goal.end"></app-timer>
-{{goal.message}}
+<app-timer [end]="goal.end" (endChange)="onEndChange($event)"></app-timer>
