@@ -1,0 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:100,400');
+
+$family-sans-serif: 'Lato';
+@import "../node_modules/bulma/bulma";
+
+body, html {
+    height: 100%;
+}

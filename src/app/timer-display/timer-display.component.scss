@@ -1,0 +1,18 @@
+.remaining-part {
+    padding: 2rem;
+    display: inline-block;
+
+    .value {
+        font-size: 8vw;
+        font-weight: 100;
+        line-height: 1em;
+    }
+
+    .label {
+        font-size: 1.2vw;
+    }
+
+    span {
+        display: block;
+    }
+}
