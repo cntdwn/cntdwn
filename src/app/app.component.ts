@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { Title } from '@angular/platform-browser';
 import { ParameterService } from './parameter.service';
 import { Goal } from './goal';
 
@@ -13,12 +12,10 @@ import { Goal } from './goal';
 })
 export class AppComponent implements OnInit {
   private goal: Goal;
-
-  constructor(private location: Location, private titleService: Title, private parameterService: ParameterService) {
+  constructor(private location: Location, private parameterService: ParameterService) {
   }
 
   ngOnInit() {
-    this.titleService.setTitle('counter');
     let url = this.location.path(false);
     let parsed = this.parameterService.parse(url);
 

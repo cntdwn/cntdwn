@@ -20,7 +20,7 @@ export class ParameterService {
                     parseInt(matches[1].slice(10, 12), 10),
                     parseInt(matches[1].slice(12, 14), 10));
 
-      let message = matches.length >= 2 ? decodeURI(matches[2]) : null;
+      let message = matches.length >= 2 && matches[2] ? decodeURI(matches[2]) : null;
       return new Goal(d, message);
     }
     return null;

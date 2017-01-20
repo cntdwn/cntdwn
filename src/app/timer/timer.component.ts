@@ -6,7 +6,7 @@ import { Input, Component, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./timer.component.scss']
 })
 export class TimerComponent {
-  public isInEditMode = false;
+  public editMode = false;
   private date: Date;
   @Output() endChange = new EventEmitter();
 
@@ -24,6 +24,6 @@ export class TimerComponent {
   }
 
   toggle() {
-    this.isInEditMode = !this.isInEditMode;
+    this.editMode = !this.editMode;
   }
 }

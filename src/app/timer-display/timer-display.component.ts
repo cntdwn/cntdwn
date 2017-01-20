@@ -3,6 +3,7 @@ import { TimerService } from '../timer.service';
 import { Remaining } from '../remaining';
 import { PadZeroPipe } from '../pad-zero.pipe';
 
+
 @Component({
   selector: 'app-timer-display',
   templateUrl: './timer-display.component.html',
@@ -14,7 +15,8 @@ export class TimerDisplayComponent implements OnChanges {
   @Input() public end: Date;
   public remaining: Remaining;
 
-  constructor(private timerService: TimerService, private cd: ChangeDetectorRef) {
+  constructor(private timerService: TimerService,
+              private cd: ChangeDetectorRef) {
 
   }
 

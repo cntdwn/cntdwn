@@ -1,9 +1,11 @@
 <div class="hero is-fullheight">
-  <div class="hero-body ">
+  <div class="hero-body">
     <div class="container has-text-centered">
-      <app-timer-edit *ngIf="isInEditMode" [(end)]="end"></app-timer-edit>
-      <app-timer-display *ngIf="!isInEditMode" [end]="end"></app-timer-display>
-      <button (click)="toggle()">{{isInEditMode ? "Display" : "Edit"}}</button>
+      <app-timer-edit *ngIf="editMode" [(end)]="end"></app-timer-edit>
+      <app-timer-display *ngIf="!editMode" [end]="end"></app-timer-display>
     </div>
+  </div>
+  <div class="hero-footer">
+    <button class="is-pulled-right" (click)="toggle()">{{editMode ? "Display" : "Edit"}}</button>
   </div>
 </div>
