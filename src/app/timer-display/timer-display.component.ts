@@ -1,6 +1,7 @@
 import { Component, OnChanges, SimpleChanges, Input, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { TimerService } from '../timer.service';
 import { Remaining } from '../remaining';
+import { PadZeroPipe } from '../pad-zero.pipe';
 
 
 @Component({
@@ -8,7 +9,7 @@ import { Remaining } from '../remaining';
   templateUrl: './timer-display.component.html',
   styleUrls: ['./timer-display.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [ TimerService ]
+  providers: [ TimerService, PadZeroPipe ]
 })
 export class TimerDisplayComponent implements OnChanges {
   @Input() public end: Date;

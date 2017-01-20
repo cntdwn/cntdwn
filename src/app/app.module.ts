@@ -11,13 +11,15 @@ import { TimerDisplayComponent } from './timer-display/timer-display.component';
 import { ParameterService } from './parameter.service';
 import { PadLeftService } from './pad-left.service';
 import { DateParseService } from './date-parse.service';
+import { PadZeroPipe } from './pad-zero.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     TimerComponent,
     TimerEditComponent,
-    TimerDisplayComponent
+    TimerDisplayComponent,
+    PadZeroPipe
   ],
   imports: [
     BrowserModule,

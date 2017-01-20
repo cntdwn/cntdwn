@@ -5,6 +5,11 @@ export class PadLeftService {
       throw new Error('character length has to be 1');
     }
 
-    return (character.repeat(noOfDigits) + input).slice(-noOfDigits);
+    let inputStr = input.toString();
+    if (inputStr.length > noOfDigits) {
+      return inputStr;
+    }
+
+    return (character.repeat(noOfDigits) + inputStr).slice(-noOfDigits);
   }
 }

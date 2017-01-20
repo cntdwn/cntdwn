@@ -12,15 +12,15 @@
     <span class="label">{{remaining.days == 1 ? 'day' : 'days'}}</span>
   </span>
   <span class="remaining-part">
-    <span class="value">{{remaining.hours}}</span>
+    <span class="value">{{remaining.hours | padZero}}</span>
     <span class="label">{{remaining.hours == 1 ? 'hour' : 'hours'}}</span>
   </span>
   <span class="remaining-part">
-    <span class="value">{{remaining.minutes}}</span>
+    <span class="value">{{remaining.minutes | padZero}}</span>
     <span class="label">{{remaining.minutes == 1 ? 'minute' : 'minutes'}}</span>
   </span>
   <span class="remaining-part">
-    <span class="value">{{remaining.seconds}}</span>
+    <span class="value">{{remaining.seconds | padZero}}</span>
     <span class="label">{{remaining.seconds == 1 ? 'second' : 'seconds'}}</span>
   </span>
 </div>
