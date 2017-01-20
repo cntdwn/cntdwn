@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { TimerComponent } from './timer.component';
 import { TimerDisplayComponent } from '../timer-display/timer-display.component';
 import { TimerEditComponent } from '../timer-edit/timer-edit.component';
+import { PadZeroPipe } from '../pad-zero.pipe';
 
 describe('TimerComponent', () => {
   let component: TimerComponent;
@@ -17,7 +18,8 @@ describe('TimerComponent', () => {
       declarations: [
         TimerComponent,
         TimerDisplayComponent,
-        TimerEditComponent
+        TimerEditComponent,
+        PadZeroPipe
       ],
       imports: [ FormsModule ]
     })

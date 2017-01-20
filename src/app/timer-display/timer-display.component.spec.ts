@@ -5,6 +5,8 @@ import { DebugElement } from '@angular/core';
 import { TimerService } from '../timer.service';
 
 import { TimerDisplayComponent } from './timer-display.component';
+import { PadZeroPipe } from '../pad-zero.pipe';
+import { PadLeftService } from '../pad-left.service';
 
 describe('TimerDisplayComponent', () => {
   let component: TimerDisplayComponent;
@@ -13,7 +15,7 @@ describe('TimerDisplayComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ TimerDisplayComponent ],
-      providers: [ TimerService ]
+      providers: [ TimerService, PadZeroPipe, PadLeftService ]
     })
     .compileComponents();
   }));

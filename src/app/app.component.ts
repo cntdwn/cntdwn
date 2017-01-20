@@ -29,18 +29,20 @@ export class AppComponent implements OnInit {
       let yearFromNow = now;
       yearFromNow.setFullYear(now.getFullYear() + 1);
       this.goal = new Goal(yearFromNow);
-      let encoded = this.parameterService.encode(this.goal);
-      this.location.replaceState(`${this.location.path(false)}${encoded}`);
+      this.setStateToUrl();
     }
   }
 
   onEndChange(date: Date) {
     if(date != null) {
-      this.goal.end = date;
-      let encoded = this.parameterService.encode(this.goal);
-      this.location.replaceState(`${this.location.path(false)}${encoded}`);
+      this.goal = new Goal(date, this.goal.message);
+      this.setStateToUrl();
     }
-    
+  }
+
+  private setStateToUrl() {
+    let encoded = this.parameterService.encode(this.goal);
+    this.location.replaceState(`${encoded}`);
   }
 
 }
