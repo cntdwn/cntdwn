@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 import { ParameterService } from './parameter.service';
 import { PadLeftService } from './pad-left.service';
+import { PadZeroPipe } from './pad-zero.pipe';
 
 describe('AppComponent', () => {
   beforeEach(() => {
@@ -19,7 +20,8 @@ describe('AppComponent', () => {
         AppComponent,
         TimerComponent,
         TimerDisplayComponent,
-        TimerEditComponent
+        TimerEditComponent,
+        PadZeroPipe
       ],
       imports: [ FormsModule ],
       providers: [

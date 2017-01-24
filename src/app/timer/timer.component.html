@@ -1,8 +1,8 @@
 <div class="hero is-fullheight">
   <div class="hero-body">
     <div class="container has-text-centered">
-      <app-timer-edit *ngIf="editMode" [(end)]="end"></app-timer-edit>
-      <app-timer-display *ngIf="!editMode" [end]="end"></app-timer-display>
+      <app-timer-edit *ngIf="editMode" [(goal)]="goal"></app-timer-edit>
+      <app-timer-display *ngIf="!editMode" [goal]="goal"></app-timer-display>
     </div>
   </div>
   <div class="hero-footer">

@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { PadLeftService } from '../pad-left.service';
 import { DateParseService } from '../date-parse.service';
+import { Goal } from '../goal';
 
 @Component({
   selector: 'app-timer-edit',
@@ -8,31 +9,42 @@ import { DateParseService } from '../date-parse.service';
   styleUrls: ['./timer-edit.component.scss']
 })
 export class TimerEditComponent {
-  @Output() endChange = new EventEmitter();
-  private date: Date;
+  @Output() goalChange = new EventEmitter();
+  private g: Goal;
   constructor(private padLeftService: PadLeftService, 
               private dateParseService: DateParseService) { }
 
   set humanDate(val: string) {
     let d = this.dateParseService.parse(val);
     if (d) {
-      this.end = d;
+      this.g = new Goal(d, this.g.message);
+      this.goalChange.emit(this.g);
     }
   }
 
   get humanDate(): string {
-    return this.dateParseService.encode(this.date);
+    return this.dateParseService.encode(this.goal.end);
   }
 
-  set end(val: Date) {
+  get message(): string {
+    return this.g.message;
+  }
+
+  set message(val: string) {
     if (val) {
-      this.date = val;
-      this.endChange.emit(this.end);
+      this.g = new Goal(this.g.end, val);
+      this.goalChange.emit(this.g);
+    }
+  }
+
+  set goal(val: Goal) {
+    if (val) {
+      this.g = val;
     }
   }
 
   @Input()
-  get end(): Date {
-    return this.date;
+  get goal(): Goal {
+    return this.g;
   }
 }

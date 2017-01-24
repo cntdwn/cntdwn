@@ -24,3 +24,6 @@
     <span class="label">{{remaining.seconds == 1 ? 'second' : 'seconds'}}</span>
   </span>
 </div>
+<div *ngIf="goal && goal.message" class="msg">
+  {{goal.message}}
+</div>

@@ -2,6 +2,7 @@ import { Component, OnChanges, SimpleChanges, Input, ChangeDetectionStrategy, Ch
 import { TimerService } from '../timer.service';
 import { Remaining } from '../remaining';
 import { PadZeroPipe } from '../pad-zero.pipe';
+import { Goal } from '../goal';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { PadZeroPipe } from '../pad-zero.pipe';
   providers: [ TimerService, PadZeroPipe ]
 })
 export class TimerDisplayComponent implements OnChanges {
-  @Input() public end: Date;
+  @Input() public goal: Goal;
   public remaining: Remaining;
 
   constructor(private timerService: TimerService,
@@ -22,8 +23,8 @@ export class TimerDisplayComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     for(let propName in changes) {
-      if (propName === 'end') {
-        this.timerService.tick(this.end).subscribe((remaining: Remaining) => {
+      if (propName === 'goal') {
+        this.timerService.tick(this.goal.end).subscribe((remaining: Remaining) => {
           this.remaining = remaining;
           this.cd.markForCheck();
         });

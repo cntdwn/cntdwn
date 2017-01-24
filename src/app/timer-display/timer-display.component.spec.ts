@@ -14,8 +14,8 @@ describe('TimerDisplayComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TimerDisplayComponent ],
-      providers: [ TimerService, PadZeroPipe, PadLeftService ]
+      declarations: [ TimerDisplayComponent, PadZeroPipe ],
+      providers: [ TimerService, PadLeftService ]
     })
     .compileComponents();
   }));

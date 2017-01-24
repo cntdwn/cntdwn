@@ -8,6 +8,8 @@ import { TimerComponent } from './timer.component';
 import { TimerDisplayComponent } from '../timer-display/timer-display.component';
 import { TimerEditComponent } from '../timer-edit/timer-edit.component';
 import { PadZeroPipe } from '../pad-zero.pipe';
+import { Goal } from '../goal';
+
 
 describe('TimerComponent', () => {
   let component: TimerComponent;
@@ -29,6 +31,7 @@ describe('TimerComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TimerComponent);
     component = fixture.componentInstance;
+    component.goal =  new Goal(new Date());
     fixture.detectChanges();
   });
 

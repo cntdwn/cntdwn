@@ -1,26 +1,29 @@
 import { Input, Component, Output, EventEmitter } from '@angular/core';
+import { Goal } from '../goal';
+import { PadLeftService } from '../pad-left.service';
 
 @Component({
   selector: 'app-timer',
   templateUrl: './timer.component.html',
-  styleUrls: ['./timer.component.scss']
+  styleUrls: ['./timer.component.scss'],
+  providers: [ PadLeftService ]
 })
 export class TimerComponent {
   public editMode = false;
-  private date: Date;
-  @Output() endChange = new EventEmitter();
+  private g: Goal;
+  @Output() goalChange = new EventEmitter();
 
   constructor() {
   }
 
   @Input()
-  get end(): Date {
-    return this.date;
+  get goal(): Goal {
+    return this.g;
   }
 
-  set end(val: Date) {
-    this.date = val;
-    this.endChange.emit(val);
+  set goal(val: Goal) {
+    this.g = val;
+    this.goalChange.emit(val);
   }
 
   toggle() {

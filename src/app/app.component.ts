@@ -30,9 +30,9 @@ export class AppComponent implements OnInit {
     }
   }
 
-  onEndChange(date: Date) {
-    if(date != null) {
-      this.goal = new Goal(date, this.goal.message);
+  onGoalChange(goal: Goal) {
+    if(goal != null) {
+      this.goal = goal;
       this.setStateToUrl();
     }
   }
