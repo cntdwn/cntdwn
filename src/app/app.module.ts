@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { CommonModule, LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 import { AppComponent } from './app.component';
@@ -24,7 +23,6 @@ import { PadZeroPipe } from './pad-zero.pipe';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
     CommonModule
   ],
   providers: [
