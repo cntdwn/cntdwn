@@ -14,7 +14,7 @@ describe('ParameterService', () => {
 
   describe('parse should', () => {
     it('parse date from path', inject([ParameterService], (service: ParameterService) => {
-      let url = '/20170630203040';
+      let url = '/#/20170630203040';
       let parsedDate = service.parse(url);
 
       let d =  new Date(1970, 0, 1);
@@ -25,7 +25,7 @@ describe('ParameterService', () => {
     }));
 
     it('return null when parsing invalid date', inject([ParameterService], (service: ParameterService) => {
-      let url = '/2017343';
+      let url = '/#/2017343';
       let parsed = service.parse(url);
       expect(parsed).toBeNull();
 
@@ -35,7 +35,7 @@ describe('ParameterService', () => {
     }));
 
     it('parse text', inject([ParameterService], (service: ParameterService) => {
-      let url = '/20160101203040/something';
+      let url = '/#/20160101203040/something';
       let parsed = service.parse(url);
 
       expect(parsed.message).toEqual('something');
@@ -46,14 +46,14 @@ describe('ParameterService', () => {
     it('encode date', inject([ParameterService], (service: ParameterService) => {
       let date = new Date(Date.UTC(2016, 0, 1));
       let goal = new Goal(date);
-      expect(service.encode(goal)).toEqual('20160101000000');
+      expect(service.encode(goal)).toEqual('#/20160101000000');
     }));
 
 
     it('encode date and message', inject([ParameterService], (service: ParameterService) => {
       let date = new Date(Date.UTC(2016, 0, 1));
       let goal = new Goal(date, 'msg');
-      expect(service.encode(goal)).toEqual('20160101000000/msg');
+      expect(service.encode(goal)).toEqual('#/20160101000000/msg');
     }));
 
     it('return null when envoding invalid date', inject([ParameterService], (service: ParameterService) => {

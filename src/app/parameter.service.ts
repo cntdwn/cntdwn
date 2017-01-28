@@ -8,7 +8,7 @@ export class ParameterService {
   constructor(private padLeftService: PadLeftService) { }
 
   parse(url: string): Goal {
-    let regex = new RegExp('^\\/(\\d{14})(?:\\/([^\\/]+))?');
+    let regex = new RegExp('^\\/#\\/(\\d{14})(?:\\/([^\\/]+))?');
     let matches = url.match(regex);
 
     if (matches != null && matches.length >= 2) {
@@ -36,7 +36,8 @@ export class ParameterService {
       return null;
     }
 
-    let params = `${goal.end.getUTCFullYear()}` +
+    let params = `#/` +
+                 `${goal.end.getUTCFullYear()}` +
                  `${pl((goal.end.getUTCMonth() + 1).toString())}` +
                  `${pl((goal.end.getUTCDate()).toString())}` +
                  `${pl((goal.end.getUTCHours()).toString())}` +
