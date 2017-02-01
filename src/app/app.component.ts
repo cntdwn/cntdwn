@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    let url = this.location.path(false);
+    let url = this.location.path(true);
     let parsed = this.parameterService.parse(url);
 
     if (parsed != null) {
